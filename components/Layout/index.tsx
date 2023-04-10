@@ -1,5 +1,3 @@
-import React from "react";
-
 // comp
 import { Sidebar, Navbar } from "..";
 

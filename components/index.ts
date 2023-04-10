@@ -6,3 +6,4 @@ export { default as Footer } from "./Footer";
 export { default as SuggestedAccounts } from "./SuggestedAccounts";
 export { default as VideoCard } from "./VideoCard";
 export { default as NoResults } from "./NoResults";
+export { default as SessionProvider } from "./SessionProvider";

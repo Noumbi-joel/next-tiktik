@@ -4,9 +4,12 @@ import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 
 // comp
-import { Layout } from "@/components";
+import { Layout, SessionProvider } from "@/components";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const [isSSR, setIsSSR] = useState(true);
 
   useEffect(() => {
@@ -16,8 +19,10 @@ export default function App({ Component, pageProps }: AppProps) {
   if (isSSR) return null;
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={session}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }

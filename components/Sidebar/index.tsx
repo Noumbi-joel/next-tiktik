@@ -6,6 +6,7 @@ import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 
 // next
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 // comp
 import { Discover, SuggestedAccounts, Footer } from "..";
@@ -13,8 +14,9 @@ import { Discover, SuggestedAccounts, Footer } from "..";
 type Props = {};
 
 const Sidebar = (props: Props) => {
+  const { data: session } = useSession();
   const [showSidebar, setShowSidebar] = useState(true);
-  const userProfile = false;
+  // const userProfile = false;
   const normalLink =
     "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
   return (
@@ -25,11 +27,14 @@ const Sidebar = (props: Props) => {
       >
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
-      {!userProfile && (
+      {!session && (
         <div className="px-2 py-4 hidden xl:block">
           <p className="text-gray-400">Log in to like and comment on videos</p>
           <div className="pr-4">
-            <button className="bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997]">
+            <button
+              onClick={() => signIn("google")}
+              className="bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997]"
+            >
               Log in
             </button>
           </div>

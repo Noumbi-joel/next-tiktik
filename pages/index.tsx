@@ -14,7 +14,6 @@ interface IProps {
 }
 
 export default function Home({ videos }: IProps) {
-  console.log(videos)
   return (
     <>
       <Head>

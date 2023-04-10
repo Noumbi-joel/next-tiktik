@@ -1,10 +1,9 @@
 // types
 import { Video } from "@/typing";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 
 // next
-import Image from "next/image";
 import Link from "next/link";
 
 // icons
@@ -39,9 +38,8 @@ const VideoCard = ({ post }: Props) => {
           <div className="md:w-16 md:h-16 w-10 h-10">
             <Link href="/">
               <>
-                <Image
-                  width={62}
-                  height={62}
+                <img
+                  className="w-[62px] h-[35px] object-cover"
                   alt={post?.caption}
                   src={post?.postedBy?.image}
                 />
