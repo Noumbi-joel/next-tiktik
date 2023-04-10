@@ -3,7 +3,18 @@ import Head from "next/head";
 // axios
 import axios from "axios";
 
-export default function Home() {
+// types
+import { Video } from "@/typing";
+
+// comp
+import { NoResults, VideoCard } from "@/components";
+
+interface IProps {
+  videos: Video[];
+}
+
+export default function Home({ videos }: IProps) {
+  console.log(videos)
   return (
     <>
       <Head>
@@ -12,20 +23,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <h1 className="text-black">Hello World</h1>
+      <div className="flex flex-col gap-10 videos h-full">
+        {videos.length ? (
+          videos.map((video: Video) => <VideoCard post={video} key={video._id} />)
+        ) : (
+          <NoResults text="No Videos" />
+        )}
       </div>
     </>
   );
 }
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get(`http://localhost:3000/api/post`);
-  console.log(data);
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`);
+  // console.log(data);
 
   return {
     props: {
-      data: data,
+      videos: data,
     },
   };
 };
