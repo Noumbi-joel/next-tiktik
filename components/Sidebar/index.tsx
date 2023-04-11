@@ -10,6 +10,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 // comp
 import { Discover, SuggestedAccounts, Footer } from "..";
+import axios from "axios";
 
 type Props = {};
 
@@ -19,6 +20,18 @@ const Sidebar = (props: Props) => {
   // const userProfile = false;
   const normalLink =
     "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
+
+  const user = {
+    _type: "user",
+    _id: session?.user?.email,
+    ...session?.user,
+  };
+
+  const handleLogin = async () => {
+    signIn("google");
+    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth`, user);
+  };
+
   return (
     <header>
       <div
@@ -32,7 +45,7 @@ const Sidebar = (props: Props) => {
           <p className="text-gray-400">Log in to like and comment on videos</p>
           <div className="pr-4">
             <button
-              onClick={() => signIn("google")}
+              onClick={handleLogin}
               className="bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997]"
             >
               Log in

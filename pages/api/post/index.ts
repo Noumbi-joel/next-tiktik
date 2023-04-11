@@ -17,5 +17,11 @@ export default async function handler(
     } catch (err: any) {
       res.status(400).json({ msg: err?.message });
     }
+  } else if (req.method === "POST") {
+    const document = req.body;
+
+    client
+      .create(document)
+      .then(() => res.status(201).json({ message: "Video created!" }));
   }
 }

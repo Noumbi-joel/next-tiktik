@@ -60,7 +60,7 @@ const Navbar = (props: Props) => {
         ) : (
           <button
             className="md:flex xl:hidden bg-white hover:bg-gray-100 border border-gray-200 p-3 rounded-md"
-            onClick={() => signIn()}
+            onClick={() => signIn("google")}
           >
             <img
               src={google_img}
