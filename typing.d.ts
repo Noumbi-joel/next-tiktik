@@ -34,3 +34,10 @@ export interface Video {
     email: string;
     name: string;
   }
+  
+  export interface User {
+    _id: string,
+    _type: string,
+    userName: string,
+    image: string,
+  }

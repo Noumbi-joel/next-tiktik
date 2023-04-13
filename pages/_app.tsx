@@ -3,8 +3,11 @@ import type { AppProps } from "next/app";
 
 import { useState, useEffect } from "react";
 
+// google
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 // comp
-import { Layout, SessionProvider } from "@/components";
+import { Layout } from "@/components";
 
 export default function App({
   Component,
@@ -19,10 +22,10 @@ export default function App({
   if (isSSR) return null;
 
   return (
-    <SessionProvider session={session}>
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_ID!}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </SessionProvider>
+    </GoogleOAuthProvider>
   );
 }

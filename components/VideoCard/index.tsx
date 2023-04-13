@@ -68,7 +68,7 @@ const VideoCard = ({ post }: Props) => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <Link href="/">
+          <Link href={`/details/${post?._id}`}>
             <video
               ref={videoRef}
               src={post?.video?.asset?.url}

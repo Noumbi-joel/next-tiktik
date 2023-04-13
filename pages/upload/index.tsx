@@ -2,7 +2,6 @@ import { useState, useEffect, ChangeEvent } from "react";
 
 // next
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
 // icons
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -10,14 +9,19 @@ import { MdDelete } from "react-icons/md";
 
 // net
 import axios from "axios";
+
 // utils
 import { client } from "../../utils/client";
 import { SanityAssetDocument } from "@sanity/client";
 import { topics } from "@/utils/constants";
 
+// persist
+import useAuthStore from "@/store/authStore";
+import { User } from "@/typing";
+
 const Upload = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { userProfile }: { userProfile: any } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   const [videoAsset, setVideoAsset] = useState<
     SanityAssetDocument | undefined
@@ -43,6 +47,7 @@ const Upload = () => {
         .then((data) => {
           setVideoAsset(data);
           setIsLoading(false);
+          if (wrongFileType) setWrongFileType(false);
         });
     } else {
       setIsLoading(false);
@@ -64,10 +69,10 @@ const Upload = () => {
             _ref: videoAsset?._id,
           },
         },
-        userId: session?.user?.email,
+        userId: userProfile?._id,
         postedBy: {
           _type: "postedBy",
-          _ref: session?.user?.email,
+          _ref: userProfile?._id,
         },
         topic: category,
       };
