@@ -1,7 +1,7 @@
 // types
 import { Video } from "@/typing";
 
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 
 // next
 import Link from "next/link";
@@ -30,6 +30,12 @@ const VideoCard = ({ post }: Props) => {
       setIsPlaying(true);
     }
   };
+
+  useEffect(() => {
+    if (videoRef?.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   return (
     <div className="flex flex-col border-b-2 border-gray-200 pb-6">
