@@ -1,5 +1,6 @@
 // next
 import Link from "next/link";
+import Image from "next/image";
 
 // icons
 import { AiOutlineLogout } from "react-icons/ai";
@@ -48,10 +49,12 @@ const Navbar = () => {
             {userProfile?.image && (
               <Link href="/">
                 <>
-                  <img
+                  <Image
                     alt="profile photo"
-                    src={userProfile.image}
-                    className="rounded-full w-[40px] h-[40px] cursor-pointer"
+                    className="rounded-full cursor-pointer"
+                    width={40}
+                    height={40}
+                    src={userProfile?.image}
                   />
                 </>
               </Link>

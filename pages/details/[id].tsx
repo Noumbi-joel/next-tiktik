@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
 
 // next
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import axios from "axios";
 
 // types
-import { Video } from "@/typing";
+import { IComment, Video } from "@/typing";
 // store
 import useAuthStore from "@/store/authStore";
 // comp
@@ -30,6 +30,8 @@ type Props = {
 const Details = ({ postDetails }: { postDetails: Video }) => {
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying] = useState(false);
+  const [comment, setComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
@@ -63,6 +65,26 @@ const Details = ({ postDetails }: { postDetails: Video }) => {
       );
 
       setPost({ ...post, likes: data?.likes });
+    }
+  };
+
+  const addComment = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
+
+    if (userProfile && comment) {
+      setIsPostingComment(true);
+
+      const { data } = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${post?._id}`,
+        {
+          userId: userProfile?._id,
+          comment,
+        }
+      );
+
+      setPost({ ...post, comments: data?.comments });
+      setComment("");
+      setIsPostingComment(false);
     }
   };
 
@@ -117,9 +139,10 @@ const Details = ({ postDetails }: { postDetails: Video }) => {
             <div className="md:w-20 md:h-20 w-16 h-16 ml-4">
               <Link href="/">
                 <>
-                  <img
-                    className="w-[62px] h-[35px] object-cover"
+                  <Image
                     alt={post?.caption}
+                    width={62}
+                    height={35}
                     src={post?.postedBy?.image}
                   />
                 </>
@@ -151,7 +174,13 @@ const Details = ({ postDetails }: { postDetails: Video }) => {
             />
           )}
         </div>
-        <Comments />
+        <Comments
+          comment={comment}
+          setComment={setComment}
+          addComment={addComment}
+          isPostingComment={isPostingComment}
+          comments={post?.comments}
+        />
       </div>
     </div>
   );
