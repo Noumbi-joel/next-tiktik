@@ -10,7 +10,7 @@ type Props = {
 
 const LikeButton = ({ handleDislike, handleLike, likes }: Props) => {
   const [alreadyLiked, setAlreadyLiked] = useState(false);
-  const { userProfile } = useAuthStore();
+  const { userProfile }: { userProfile: any } = useAuthStore();
   const filterLikes = likes?.filter((item) => item._ref === userProfile?._id);
 
   useEffect(() => {

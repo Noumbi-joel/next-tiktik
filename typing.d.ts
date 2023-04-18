@@ -50,11 +50,15 @@ export interface IComment {
     _id?: string;
   };
 }
-
 export interface ProfileData {
   data: {
     user: User;
     userVideos: Video[];
     userLikedVideos: Video[];
   };
+}
+
+export interface IStore {
+  userProfile: User;
+  allUsers: User[];
 }

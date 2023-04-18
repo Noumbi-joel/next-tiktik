@@ -3,9 +3,7 @@ import { persist } from "zustand/middleware";
 
 // net
 import axios from "axios";
-
-// types
-import { User } from "@/typing";
+import { User } from "next-auth";
 
 const authStore = (set: any) => ({
   userProfile: null,
