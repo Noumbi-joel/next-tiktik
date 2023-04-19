@@ -1,38 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Project Title
+Tiktik @nkjy
+## Project Description
+* This project is based on Tiktok app where you can post a **piece of footage, like, comment, search** among given topics like **comedy, sport**...
+* My challenge during the building of this app was to be able of using **Zustand** for local storage management instead of **Redux or something else**.
+* So what i've learned is **Zustand** is a small, fast and scalable bearbones state-management solution using simplified flux principles. Has a comfy API based on hooks, isn't boilerplatey or opinionated. Also the package size of **Zustand** is light compared to **Redux**.
+## Features
+* So you can **UPLOAD** a piece of footage mp4, ogg, gif
+* You can **LIKE** the Post of someone
+* You can **COMMENT** someone's Post
+* You can **Search** a video or someone's account or use **predefined keywords** to search certain kind of videos.
+## Screenshots
+![home](https://user-images.githubusercontent.com/62994009/233047056-3d3054de-8ce3-4ea9-a0d8-a61aafcabebd.PNG)
+![liked](https://user-images.githubusercontent.com/62994009/233047086-8fc97579-eb46-43dd-8c4b-9fe4e532f586.PNG)
+![profile](https://user-images.githubusercontent.com/62994009/233047101-3df4db39-5f26-4e5f-b52c-74fda05a73f6.PNG)
+![search acc](https://user-images.githubusercontent.com/62994009/233047117-48ca4639-0e37-4a9a-8685-a8cb955a73d1.PNG)
+![search videos](https://user-images.githubusercontent.com/62994009/233047131-7a7908c1-5128-47af-a4c8-363dd7278461.PNG)
+![topic](https://user-images.githubusercontent.com/62994009/233047147-5dd03436-7737-4ba1-8477-15fb3217e279.PNG)
+![upload](https://user-images.githubusercontent.com/62994009/233047164-e815190c-d00f-4c34-be7a-26bea482da11.PNG)
+![video details](https://user-images.githubusercontent.com/62994009/233047169-198b6530-ca58-454e-b2b6-7ce065a11bae.PNG)
